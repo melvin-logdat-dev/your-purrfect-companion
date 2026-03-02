@@ -10,7 +10,7 @@ const Banner = ({ breedId }) => {
   const [images, setImages] = useState([]);
   const [breedName, setBreedName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [cache, setCache] = useState({}); // 👈 simple cache
+  const [cache, setCache] = useState({}); // simple cache
 
   useEffect(() => {
     if (!breedId) return;
@@ -79,7 +79,7 @@ const Banner = ({ breedId }) => {
         <img src={preloader} alt="preloader" className="preloader" />
       ) : images.length > 0 ? (
         <Swiper
-          key={breedId} // 👈 forces reload when breed changes
+          key={breedId} // forces reload when breed changes
           modules={[Navigation, Autoplay]}
           loop
           autoplay={{ delay: 3000 }}

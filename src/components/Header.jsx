@@ -6,10 +6,9 @@ const Header = () => {
       <header className="header">
         <img src={pawLogo} alt="Paw Logo" className="pawLogo" />
         <h1 className="title">
-          Find Your Purrfect
-          <br /> Companion
+          Whimsical Whiskers
         </h1>
-        <p className="desc">Whiskers, cuddles, and endless purrs await.</p>
+        <p className="desc">A Cat Breed Collection</p>
       </header>
     </>
   );
