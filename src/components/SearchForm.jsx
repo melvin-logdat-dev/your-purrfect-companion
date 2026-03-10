@@ -6,21 +6,32 @@ const SearchForm = ({ onBreedSelect }) => {
   const [selectedBreed, setSelectedBreed] = useState("");
 
   useEffect(() => {
+    // stops the old request. / for component unmount
     const controller = new AbortController();
     // Make a request for a user with a given ID
     axios
-      .get("https://api.thecatapi.com/v1/breeds", { signal: controller.signal })
+      // The API endpoint returns a list of all cat breeds.
+      .get("https://api.thecatapi.com/v1/breeds", {
+        // connects the request to the AbortController, so it can be cancelled if necessary.
+        signal: controller.signal,
+      })
+      // handle success
+      // contains the data returned from the server.
       .then((response) => {
-        // handle success
+        // Save the Breeds to State
         setBreeds(response.data);
       })
+      // Handle Errors
       .catch((error) => {
+        // If the request was cancelled intentionally, ignore the error.
         if (error.name === "CanceledError") {
           return;
         }
+        // If the error is not caused by cancellation. log it to the console.
         console.error("Error fetching and parsing data", error);
       });
-
+    // Cleanup Function
+    // It cancels the API request to prevent memory leaks.
     return () => {
       controller.abort();
     };
